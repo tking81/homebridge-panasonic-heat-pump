@@ -129,7 +129,7 @@ export class ThermostatAccessory extends Accessory<DeviceContext> {
     const {targetTempMin, tempType} = readings;
     const temperatureDelta = this.getTemperatureDelta({targetTempMin});
     const parsedTemp = parseInt(temp as string);
-    const adjustedTemp = parsedTemp + temperatureDelta;
+    const adjustedTemp = parsedTemp - temperatureDelta;
 
     try {
       this.panasonicApi.setZoneTemp(this.accessory.context.device.uniqueId, adjustedTemp, tempType);
